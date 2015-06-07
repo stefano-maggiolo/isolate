@@ -1,0 +1,25 @@
+dist: trusty
+language: c
+compiler:
+  - gcc
+before_script:
+  - mount
+  - sudo apt-get install -qq
+  - sudo apt-get install cgroup-lite
+  - groups
+  - make
+  - sudo chown root:travis isolate
+  - sudo chmod 777 isolate
+  - sudo chmod u+s isolate
+  - ls -al .
+  - uname -a
+  - mount
+  - ls /sys/fs/cgroup/
+  - ls /boot
+  - cat /proc/cgroups
+  - cat /proc/self/cgroup
+  - mount
+  - ls /sys/fs/cgroup/
+  - cat /proc/cgroups
+  - cat /proc/self/cgroup
+  - ./isolate --cg --box-id=10 --init
